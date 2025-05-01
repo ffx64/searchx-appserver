@@ -1,13 +1,13 @@
-package com.sentielx.searchx;
+package com.ffx64.searchx_api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SearchxApplication {
+public class SearchxApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SearchxApplication.class, args);
+		SpringApplication.run(SearchxApiApplication.class, args);
 	}
 
 }
