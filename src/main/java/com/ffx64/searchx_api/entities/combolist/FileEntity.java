@@ -16,45 +16,43 @@ import jakarta.persistence.TemporalType;
 public class FileEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "agent_key", nullable = false, length = 64)
+    @Column(name="agent_key", nullable=false, length=64)
     private String agentKey;
 
-    @Column(name = "name", nullable = false, length = 255)
+    @Column(name="name", nullable=false, length=255)
     private String name;
 
-    @Column(name = "size", nullable = false)
+    @Column(name="size", nullable=false)
     private Long size;
 
-    @Column(name = "hash", nullable = false, length = 64, unique = true)
+    @Column(name="hash", nullable=false, length=64, unique=true)
     private String hash;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name="created_at", nullable=false)
     @Temporal(TemporalType.DATE)
     private Date createdAt;
 
-    @Column(name = "processed_at")
+    @Column(name="processed_at")
     @Temporal(TemporalType.DATE)
     private Date processedAt;
 
-    @Column(name = "status", nullable = false)
+    @Column(name="status", nullable=false)
     private Integer status = 0; // Default status is 'pending'
 
-    @Column(name = "source", length = 255)
+    @Column(name="source", length=255)
     private String source;
 
-    @Column(name = "type", length = 20)
+    @Column(name="type", length=20)
     private String type;
 
-    @Column(name = "description", columnDefinition = "TEXT")
+    @Column(name="description", columnDefinition="TEXT")
     private String description;
 
-    @Column(name = "processed_entries_count", nullable = false)
+    @Column(name="processed_entries_count", nullable=false)
     private Integer processedEntriesCount = 0;
-
-    // Getters and Setters
 
     public Long getId() {
         return id;

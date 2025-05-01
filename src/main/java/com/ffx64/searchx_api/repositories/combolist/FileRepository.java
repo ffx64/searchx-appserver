@@ -14,6 +14,8 @@ public interface FileRepository extends JpaRepository<FileEntity, Long> {
     List<FileEntity> findByStatus(Integer status);
 
     List<FileEntity> findByCreatedAt(Date createdAt);
+    
+    List<FileEntity> findByAgentKey(String agentKey);
 
     FileEntity findByHash(String hash);
 }

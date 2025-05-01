@@ -14,4 +14,8 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     List<UserEntity> findByFileId(Long fileId);
 
     List<UserEntity> findByCreatedAt(Date createdAt);
+    
+    List<UserEntity> findByUsernameIgnoreCase(String username);
+
+    List<UserEntity> findByPasswordIgnoreCase(String password);
 }

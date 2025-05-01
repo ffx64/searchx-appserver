@@ -14,29 +14,26 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "urls")
+@Table(name="urls")
 public class UrlEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    // Relacionamento com a tabela 'users'
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name="user_id", nullable=false)
     private UserEntity user;
 
-    @Column(name = "url", nullable = false, columnDefinition = "TEXT")
+    @Column(name="url", nullable=false, columnDefinition="TEXT")
     private String url;
 
-    @Column(name = "file_line", nullable = false, columnDefinition = "TEXT")
+    @Column(name="file_line", nullable=false, columnDefinition="TEXT")
     private String fileLine;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name="created_at", nullable=false)
     @Temporal(TemporalType.DATE)
     private Date createdAt;
-
-    // Getters and Setters
 
     public Long getId() {
         return id;
