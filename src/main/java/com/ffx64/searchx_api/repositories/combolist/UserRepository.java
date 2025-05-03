@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ffx64.searchx_api.entities.combolist.UserEntity;
 
-@Repository
+@Repository("combolistUserRepository")
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     List<UserEntity> findByFileId(Long fileId);

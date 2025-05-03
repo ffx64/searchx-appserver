@@ -3,6 +3,7 @@ package com.ffx64.searchx_api.controllers.combolist;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.ffx64.searchx_api.repositories.combolist.UserRepository;
 
 @RestController
 @RequestMapping("/v1/api/combolist/users")
+@Controller("userControllerCombolist")
 public class UserController {
 
     @Autowired

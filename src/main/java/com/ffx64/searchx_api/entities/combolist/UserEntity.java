@@ -1,6 +1,6 @@
 package com.ffx64.searchx_api.entities.combolist;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,9 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name="users")
@@ -22,7 +21,7 @@ public class UserEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="file_id", nullable = false)
+    @JoinColumn(name="file_id", nullable=false)
     private FileEntity file;
 
     @Column(name="username", nullable=false, columnDefinition="TEXT")
@@ -31,9 +30,13 @@ public class UserEntity {
     @Column(name="password", nullable=false, columnDefinition="TEXT")
     private String password;
 
-    @Column(name="created_at", nullable=false)
-    @Temporal(TemporalType.DATE)
-    private Date createdAt;
+    @Column(name="created_at", columnDefinition="TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP")
+    private OffsetDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = OffsetDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -67,11 +70,11 @@ public class UserEntity {
         this.password = password;
     }
 
-    public Date getCreatedAt() {
+    public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
     }
 }

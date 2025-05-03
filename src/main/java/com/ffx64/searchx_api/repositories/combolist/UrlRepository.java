@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ffx64.searchx_api.entities.combolist.UrlEntity;
 
-@Repository
+@Repository("combolistUrlRepository")
 public interface UrlRepository extends JpaRepository<UrlEntity, Long> {
 
     List<UrlEntity> findByUserId(Long userId);

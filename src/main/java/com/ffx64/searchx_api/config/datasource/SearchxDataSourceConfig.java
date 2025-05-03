@@ -17,37 +17,39 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-    basePackages = "com.ffx64.searchx_api.repositories.combolist",
-    entityManagerFactoryRef = "combolistEntityManagerFactory",
-    transactionManagerRef = "combolistTransactionManager"
+    basePackages = "com.ffx64.searchx_api.repositories.searchx",
+    entityManagerFactoryRef = "searchxEntityManagerFactory",
+    transactionManagerRef = "searchxTransactionManager"
 )
-public class CombolistDataSourceConfig {
-
-    @Bean(name="combolistDataSource")
-    public DataSource combolistDataSource() {
+public class SearchxDataSourceConfig {
+    
+    @Primary
+    @Bean(name="searchxDataSource")
+    public DataSource searchxDataSource() {
         return DataSourceBuilder.create()
-            .url("jdbc:postgresql://192.168.229.131:5433/searchx_combolist")
+            .url("jdbc:postgresql://192.168.229.131:5435/searchx")
             .username("docker")
             .password("docker")
             .driverClassName("org.postgresql.Driver")
             .build();
     }
 
-    @Bean(name="combolistEntityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean combolistEntityManagerFactory(
+    @Primary
+    @Bean(name="searchxEntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean searchxEntityManagerFactory(
             EntityManagerFactoryBuilder builder,
-            @Qualifier("combolistDataSource") DataSource dataSource) {
+            @Qualifier("searchxDataSource") DataSource dataSource) {
         return builder
             .dataSource(dataSource)
-            .packages("com.ffx64.searchx_api.entities.combolist")
-            .persistenceUnit("combolist")
+            .packages("com.ffx64.searchx_api.entities.searchx")
+            .persistenceUnit("searchx")
             .build();
     }
 
     @Primary
-    @Bean(name="combolistTransactionManager")
-    public PlatformTransactionManager combolistTransactionManager(
-            @Qualifier("combolistEntityManagerFactory") LocalContainerEntityManagerFactoryBean factoryBean) {
+    @Bean(name="searchxTransactionManager")
+    public PlatformTransactionManager searchxTransactionManager(
+            @Qualifier("searchxEntityManagerFactory") LocalContainerEntityManagerFactoryBean factoryBean) {
         return new JpaTransactionManager(factoryBean.getObject());
     }
 }

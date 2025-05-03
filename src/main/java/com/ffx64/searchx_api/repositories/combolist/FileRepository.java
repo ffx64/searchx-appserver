@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ffx64.searchx_api.entities.combolist.FileEntity;
 
-@Repository
+@Repository("combolistFileRepository")
 public interface FileRepository extends JpaRepository<FileEntity, Long> {
 
     List<FileEntity> findByStatus(Integer status);
