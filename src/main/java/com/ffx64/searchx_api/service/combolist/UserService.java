@@ -20,7 +20,7 @@ public class UserService {
 
     public List<UserResponseDTO> getAllUsers() {
         return userRepository.findAll().stream()
-                .map(this::toDTO)  // Aqui usamos o método toDTO
+                .map(this::toDTO)
                 .collect(Collectors.toList());
     }
 
@@ -48,7 +48,6 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-        // Método para converter FileEntity para FileResponseDTO
     private FileResponseDTO toFileDTO(FileEntity fileEntity) {
         return FileResponseDTO.builder()
                 .id(fileEntity.getId())
@@ -66,11 +65,10 @@ public class UserService {
                 .build();
     }
     
-    // Método toDTO para converter UserEntity para UserResponseDTO
     private UserResponseDTO toDTO(UserEntity userEntity) {
         return UserResponseDTO.builder()
                 .id(userEntity.getId())
-                .file(toFileDTO(userEntity.getFile()))  // Agora pegamos as informações do arquivo
+                .file(toFileDTO(userEntity.getFile()))
                 .username(userEntity.getUsername())
                 .password(userEntity.getPassword())
                 .createdAt(userEntity.getCreatedAt())

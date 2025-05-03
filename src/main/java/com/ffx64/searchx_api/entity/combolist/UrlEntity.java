@@ -1,7 +1,6 @@
 package com.ffx64.searchx_api.entity.combolist;
 
 import java.time.OffsetDateTime;
-import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
