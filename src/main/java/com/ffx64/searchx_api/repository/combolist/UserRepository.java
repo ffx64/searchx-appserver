@@ -10,12 +10,12 @@ import com.ffx64.searchx_api.entity.combolist.UserEntity;
 
 @Repository("combolistUserRepository")
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
-
+    
     List<UserEntity> findByFileId(Long fileId);
 
     List<UserEntity> findByCreatedAt(Date createdAt);
-    
-    List<UserEntity> findByUsernameIgnoreCase(String username);
 
+    List<UserEntity> findByUsernameIgnoreCase(String username);
+    
     List<UserEntity> findByPasswordIgnoreCase(String password);
 }

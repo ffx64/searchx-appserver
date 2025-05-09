@@ -9,7 +9,7 @@ import com.ffx64.searchx_api.entity.combolist.UrlEntity;
 
 @Repository("combolistUrlRepository")
 public interface UrlRepository extends JpaRepository<UrlEntity, Long> {
-
+    
     List<UrlEntity> findByUserId(Long userId);
 
     boolean existsByUserIdAndUrl(Long userId, String url);

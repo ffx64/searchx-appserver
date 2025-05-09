@@ -14,9 +14,9 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
 
+@Data
 @Entity
 @Table(name="files")
-@Data
 public class FileEntity {
 
     @Id

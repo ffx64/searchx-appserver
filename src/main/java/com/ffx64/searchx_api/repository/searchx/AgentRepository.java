@@ -10,6 +10,8 @@ import com.ffx64.searchx_api.entity.searchx.AgentEntity;
 
 @Repository("searchxAgentRepository")
 public interface AgentRepository extends JpaRepository<AgentEntity, Long> {
+    
     List<AgentEntity> findByUserId(Long userId);
+    
     Optional<AgentEntity> findByKey(String key);
 }

@@ -13,9 +13,9 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
 
+@Data
 @Entity
 @Table(name="users")
-@Data
 public class UserEntity {
 
     @Id

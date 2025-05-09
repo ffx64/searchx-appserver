@@ -1,13 +1,12 @@
 package com.ffx64.searchx_api.dto.combolist;
 
-import lombok.Data;
-
 import java.time.OffsetDateTime;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor

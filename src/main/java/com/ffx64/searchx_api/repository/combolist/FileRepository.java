@@ -10,12 +10,12 @@ import com.ffx64.searchx_api.entity.combolist.FileEntity;
 
 @Repository("combolistFileRepository")
 public interface FileRepository extends JpaRepository<FileEntity, Long> {
-
+    
     List<FileEntity> findByStatus(Integer status);
 
     List<FileEntity> findByCreatedAt(Date createdAt);
-    
-    List<FileEntity> findByAgentKey(String agentKey);
 
+    List<FileEntity> findByAgentKey(String agentKey);
+    
     FileEntity findByHash(String hash);
 }
