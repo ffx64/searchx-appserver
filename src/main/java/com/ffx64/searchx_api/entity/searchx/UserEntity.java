@@ -1,6 +1,11 @@
 package com.ffx64.searchx_api.entity.searchx;
 
 import java.time.OffsetDateTime;
+import java.util.Collection;
+import java.util.Collections;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,19 +19,19 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="users")
-public class UserEntity {
+public class UserEntity implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable=false, unique=true)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable=false)
     private String password;
 
-    @Column(name = "agents_count", nullable = false)
+    @Column(name="agents_count", nullable=false)
     private int agentsCount = 0;
 
     @Column(name="created_at", columnDefinition="TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP")
@@ -35,5 +40,35 @@ public class UserEntity {
     @PrePersist
     protected void onCreate() {
         createdAt = OffsetDateTime.now();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
