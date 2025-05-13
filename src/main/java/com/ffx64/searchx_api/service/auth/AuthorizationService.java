@@ -1,4 +1,4 @@
-package com.ffx64.searchx_api.service.security;
+package com.ffx64.searchx_api.service.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

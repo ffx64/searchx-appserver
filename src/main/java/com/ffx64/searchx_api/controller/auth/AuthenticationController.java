@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ffx64.searchx_api.dto.auth.LoginResponseDTO;
+import com.ffx64.searchx_api.dto.auth.TokenResponseDTO;
 import com.ffx64.searchx_api.dto.searchx.UserRequestDTO;
 import com.ffx64.searchx_api.infra.security.TokenService;
 
@@ -27,12 +27,12 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping("login")
-    public ResponseEntity login(@RequestBody @Valid UserRequestDTO user) {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+    public ResponseEntity<TokenResponseDTO> login(@RequestBody @Valid UserRequestDTO user) {
+        var usernamePassword = new UsernamePasswordAuthenticationToken(user.username(), user.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
         var token = tokenService.generateToken((UserDetails) auth.getPrincipal());
 
-        return ResponseEntity.ok(new LoginResponseDTO(token));
+        return ResponseEntity.ok(new TokenResponseDTO(token));
     }
 }

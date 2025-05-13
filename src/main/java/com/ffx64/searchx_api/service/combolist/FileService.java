@@ -41,11 +41,19 @@ public class FileService {
     }
 
     private FileResponseDTO toDTO(FileEntity entity) {
-        return FileResponseDTO.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .status(entity.getStatus())
-                .createdAt(entity.getCreatedAt())
-                .build();
+        return new FileResponseDTO(
+            entity.getId(),
+            entity.getAgentKey(),
+            entity.getName(),
+            entity.getSize(),
+            entity.getHash(),
+            entity.getCreatedAt(),
+            entity.getProcessedAt(),
+            entity.getStatus(),
+            entity.getSource(),
+            entity.getType(),
+            entity.getDescription(),
+            entity.getProcessedEntriesCount()
+        );
     }
 }

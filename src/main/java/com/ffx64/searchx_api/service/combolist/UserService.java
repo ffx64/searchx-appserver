@@ -48,30 +48,30 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    private FileResponseDTO toFileDTO(FileEntity fileEntity) {
-        return FileResponseDTO.builder()
-                .id(fileEntity.getId())
-                .agentKey(fileEntity.getAgentKey())
-                .name(fileEntity.getName())
-                .size(fileEntity.getSize())
-                .hash(fileEntity.getHash())
-                .createdAt(fileEntity.getCreatedAt())
-                .processedAt(fileEntity.getProcessedAt())
-                .status(fileEntity.getStatus())
-                .source(fileEntity.getSource())
-                .type(fileEntity.getType())
-                .description(fileEntity.getDescription())
-                .processedEntriesCount(fileEntity.getProcessedEntriesCount())
-                .build();
+    private FileResponseDTO toFileDTO(FileEntity entity) {
+        return new FileResponseDTO(
+            entity.getId(),
+            entity.getAgentKey(),
+            entity.getName(),
+            entity.getSize(),
+            entity.getHash(),
+            entity.getCreatedAt(),
+            entity.getProcessedAt(),
+            entity.getStatus(),
+            entity.getSource(),
+            entity.getType(),
+            entity.getDescription(),
+            entity.getProcessedEntriesCount()
+        );
     }
     
-    private UserResponseDTO toDTO(UserEntity userEntity) {
-        return UserResponseDTO.builder()
-                .id(userEntity.getId())
-                .file(toFileDTO(userEntity.getFile()))
-                .username(userEntity.getUsername())
-                .password(userEntity.getPassword())
-                .createdAt(userEntity.getCreatedAt())
-                .build();
+    private UserResponseDTO toDTO(UserEntity entity) {
+        return new UserResponseDTO(
+            entity.getId(),
+            this.toFileDTO(entity.getFile()),
+            entity.getUsername(),
+            entity.getPassword(),
+            entity.getCreatedAt()
+        );
     }
 }

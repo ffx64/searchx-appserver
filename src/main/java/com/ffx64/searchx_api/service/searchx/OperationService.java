@@ -22,8 +22,8 @@ public class OperationService {
     public OperationResponseDTO createOperation(OperationRequestDTO dto) {
         OperationEntity entity = new OperationEntity();
 
-        entity.setName(dto.getName());
-        entity.setDescription(dto.getDescription());
+        entity.setName(dto.name());
+        entity.setDescription(dto.description());
 
         OperationEntity saved = operationRepository.save(entity);
         
@@ -37,11 +37,12 @@ public class OperationService {
     }
 
     private OperationResponseDTO toDTO(OperationEntity entity) {
-        return OperationResponseDTO.builder()
-            .id(entity.getId())
-            .name(entity.getName())
-            .description(entity.getDescription())
-            .startDate(entity.getStartDate())
-            .build();
+        return new OperationResponseDTO(
+            entity.getId(),
+            entity.getName(),
+            entity.getDescription(),
+            entity.getStartDate(),
+            entity.getEndDate()
+        );
     }
 }

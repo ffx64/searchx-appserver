@@ -6,8 +6,10 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ffx64.searchx_api.dto.combolist.FileResponseDTO;
 import com.ffx64.searchx_api.dto.combolist.UrlResponseDTO;
 import com.ffx64.searchx_api.dto.combolist.UserResponseDTO;
+import com.ffx64.searchx_api.entity.combolist.FileEntity;
 import com.ffx64.searchx_api.entity.combolist.UrlEntity;
 import com.ffx64.searchx_api.entity.combolist.UserEntity;
 import com.ffx64.searchx_api.repository.combolist.UrlRepository;
@@ -30,21 +32,40 @@ public class UrlService {
                 .orElse(null);
     }
 
-    private UserResponseDTO toUserDTO(UserEntity entity) {
-        return UserResponseDTO.builder()
-                .id(entity.getId())
-                .username(entity.getUsername())
-                .createdAt(entity.getCreatedAt())
-                .build();
+    private FileResponseDTO toFileDTO(FileEntity entity) {
+        return new FileResponseDTO(
+            entity.getId(),
+            entity.getAgentKey(),
+            entity.getName(),
+            entity.getSize(),
+            entity.getHash(),
+            entity.getCreatedAt(),
+            entity.getProcessedAt(),
+            entity.getStatus(),
+            entity.getSource(),
+            entity.getType(),
+            entity.getDescription(),
+            entity.getProcessedEntriesCount()
+        );
     }
 
+    private UserResponseDTO toUserDTO(UserEntity entity) {
+        return new UserResponseDTO(
+            entity.getId(),
+            this.toFileDTO(entity.getFile()),
+            entity.getUsername(),
+            entity.getPassword(),
+            entity.getCreatedAt()
+        );
+    }
+ 
     private UrlResponseDTO toDTO(UrlEntity entity) {
-        return UrlResponseDTO.builder()
-                .id(entity.getId())
-                .user(this.toUserDTO(entity.getUser()))
-                .url(entity.getUrl())
-                .fileLine(entity.getFileLine())
-                .createdAt(entity.getCreatedAt())
-                .build();
+        return new UrlResponseDTO(
+            entity.getId(),
+            this.toUserDTO(entity.getUser()),
+            entity.getUrl(),
+            entity.getFileLine(),
+            entity.getCreatedAt()
+        );
     }
 }
