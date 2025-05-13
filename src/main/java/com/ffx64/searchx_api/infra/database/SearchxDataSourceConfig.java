@@ -1,4 +1,4 @@
-package com.ffx64.searchx_api.infra;
+package com.ffx64.searchx_api.infra.database;
 
 import javax.sql.DataSource;
 
