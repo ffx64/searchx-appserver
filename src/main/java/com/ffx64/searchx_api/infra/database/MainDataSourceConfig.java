@@ -17,15 +17,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-    basePackages = "com.ffx64.searchx_api.repository.searchx",
-    entityManagerFactoryRef = "searchxEntityManagerFactory",
-    transactionManagerRef = "searchxTransactionManager"
+    basePackages="com.ffx64.searchx_api.repository.main",
+    entityManagerFactoryRef="mainEntityManagerFactory",
+    transactionManagerRef="mainTransactionManager"
 )
-public class SearchxDataSourceConfig {
+public class MainDataSourceConfig {
     
     @Primary
-    @Bean(name="searchxDataSource")
-    public DataSource searchxDataSource() {
+    @Bean(name="mainDataSource")
+    public DataSource mainDataSource() {
         return DataSourceBuilder.create()
             .url("jdbc:postgresql://192.168.229.131:5435/searchx")
             .username("docker")
@@ -35,21 +35,21 @@ public class SearchxDataSourceConfig {
     }
 
     @Primary
-    @Bean(name="searchxEntityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean searchxEntityManagerFactory(
+    @Bean(name="mainEntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean mainEntityManagerFactory(
             EntityManagerFactoryBuilder builder,
-            @Qualifier("searchxDataSource") DataSource dataSource) {
+            @Qualifier("mainDataSource") DataSource dataSource) {
         return builder
             .dataSource(dataSource)
-            .packages("com.ffx64.searchx_api.entity.searchx")
-            .persistenceUnit("searchx")
+            .packages("com.ffx64.searchx_api.entity.main")
+            .persistenceUnit("main")
             .build();
     }
 
     @Primary
-    @Bean(name="searchxTransactionManager")
-    public PlatformTransactionManager searchxTransactionManager(
-            @Qualifier("searchxEntityManagerFactory") LocalContainerEntityManagerFactoryBean factoryBean) {
+    @Bean(name="mainTransactionManager")
+    public PlatformTransactionManager mainTransactionManager(
+            @Qualifier("mainEntityManagerFactory") LocalContainerEntityManagerFactoryBean factoryBean) {
         return new JpaTransactionManager(factoryBean.getObject());
     }
 }
