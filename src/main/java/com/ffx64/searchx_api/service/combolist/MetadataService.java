@@ -1,5 +1,7 @@
 package com.ffx64.searchx_api.service.combolist;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +19,7 @@ public class MetadataService {
     @Autowired
     MetadataRepository repository;
 
-    public MetadataResponseDTO getById(Long id) {
+    public MetadataResponseDTO getById(UUID id) {
         MetadataEntity metadata = repository.findById(id).orElseThrow(() -> new MetadataNotFoundException());
 
         return new MetadataResponseDTO(

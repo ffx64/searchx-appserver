@@ -1,5 +1,7 @@
 package com.ffx64.searchx_api.controller.combolist;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,7 @@ public class MetadataController {
     MetadataService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<MetadataResponseDTO> getById(@PathVariable Long id) {
+    public ResponseEntity<MetadataResponseDTO> getById(@PathVariable UUID id) {
         return ResponseEntity.ok(service.getById(id));
     }
 

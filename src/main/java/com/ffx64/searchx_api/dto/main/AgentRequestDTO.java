@@ -1,6 +1,7 @@
 package com.ffx64.searchx_api.dto.main;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -12,7 +13,7 @@ public record AgentRequestDTO(
     
     @JsonProperty("user_id")
     @NotNull(message="User ID cannot be null")
-    Long userId,
+    UUID userId,
 
     @JsonProperty("agent_type")
     @NotBlank(message="Agent type cannot be empty")

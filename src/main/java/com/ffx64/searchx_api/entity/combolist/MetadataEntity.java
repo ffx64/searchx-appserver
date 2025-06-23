@@ -2,11 +2,11 @@ package com.ffx64.searchx_api.entity.combolist;
 
 import java.time.OffsetTime;
 import java.util.List;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -14,8 +14,9 @@ import jakarta.persistence.Table;
 @Table(name="combolist_metadata")
 public class MetadataEntity {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name="source", nullable=false)
     private String source;
@@ -27,11 +28,11 @@ public class MetadataEntity {
 
     private String notes;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

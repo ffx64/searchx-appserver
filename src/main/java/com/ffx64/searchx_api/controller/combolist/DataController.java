@@ -1,6 +1,7 @@
 package com.ffx64.searchx_api.controller.combolist;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class DataController {
     private DataService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<DataMResponseDTO> getById(@PathVariable Long id) {
+    public ResponseEntity<DataMResponseDTO> getById(@PathVariable UUID id) {
         return ResponseEntity.ok(service.getById(id));
     }
 

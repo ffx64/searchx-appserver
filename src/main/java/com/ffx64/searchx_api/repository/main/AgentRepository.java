@@ -2,8 +2,7 @@ package com.ffx64.searchx_api.repository.main;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import javax.validation.constraints.NotBlank;
+import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,7 +11,7 @@ import com.ffx64.searchx_api.entity.main.AgentEntity;
 import com.ffx64.searchx_api.entity.main.UserEntity;
 
 @Repository("MainAgentRepository")
-public interface AgentRepository extends JpaRepository<AgentEntity, Long> {
+public interface AgentRepository extends JpaRepository<AgentEntity, UUID> {
 
     List<AgentEntity> findByAgentType(String agentType);
 

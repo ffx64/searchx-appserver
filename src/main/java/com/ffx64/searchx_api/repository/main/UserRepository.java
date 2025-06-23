@@ -1,7 +1,7 @@
 package com.ffx64.searchx_api.repository.main;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.ffx64.searchx_api.entity.main.UserEntity;
 
 @Repository("MainUserRepository")
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
     Optional<UserEntity> findByUsername(String username);
 
@@ -28,5 +28,5 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     @Modifying
     @Query("UPDATE UserEntity u SET u.lastLogin = CURRENT_TIMESTAMP WHERE u.id = :userId")
-    void updateLastLogin(@Param("userId") Long userId);
+    void updateLastLogin(@Param("userId") UUID userId);
 }

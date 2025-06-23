@@ -1,6 +1,7 @@
 package com.ffx64.searchx_api.service.combolist;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class DataService {
             .toList();
     }
 
-    public DataMResponseDTO getById(Long id) {
+    public DataMResponseDTO getById(UUID id) {
         DataEntity entry = repository.findById(id)
                             .orElseThrow(() -> new MetadataNotFoundException());
     

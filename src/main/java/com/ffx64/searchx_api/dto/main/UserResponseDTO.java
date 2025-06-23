@@ -1,13 +1,14 @@
 package com.ffx64.searchx_api.dto.main;
 
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.Email;
 
 public record UserResponseDTO(
-    Long id,
+    UUID id,
     String username,
     
     @JsonProperty("full_name")

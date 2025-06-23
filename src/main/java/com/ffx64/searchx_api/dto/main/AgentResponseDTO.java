@@ -2,16 +2,17 @@ package com.ffx64.searchx_api.dto.main;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record AgentResponseDTO(
-    Long id,
+    UUID id,
     
     String name,
 
     @JsonProperty("user_id")
-    Long userId,
+    UUID userId,
     
     @JsonProperty("agent_type")
     String agentType,

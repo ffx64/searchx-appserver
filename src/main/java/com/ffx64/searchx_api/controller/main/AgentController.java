@@ -1,6 +1,7 @@
 package com.ffx64.searchx_api.controller.main;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class AgentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AgentResponseDTO> update(@PathVariable Long id, @RequestBody @Valid AgentRequestDTO dto) {
+    public ResponseEntity<AgentResponseDTO> update(@PathVariable UUID id, @RequestBody @Valid AgentRequestDTO dto) {
         AgentResponseDTO updatedAgent = service.update(id, dto);
 
         return ResponseEntity.ok(updatedAgent);
@@ -48,14 +49,14 @@ public class AgentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AgentResponseDTO> getById(@PathVariable("id") Long id) {
+    public ResponseEntity<AgentResponseDTO> getById(@PathVariable("id") UUID id) {
         AgentResponseDTO agent = service.getById(id);
         
         return ResponseEntity.ok(agent);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") UUID id) {
         service.delete(id);
 
         return ResponseEntity.noContent().build();

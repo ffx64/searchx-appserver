@@ -3,6 +3,7 @@ package com.ffx64.searchx_api.service.main;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,7 @@ public class AgentService {
     }
 
     @Transactional
-    public AgentResponseDTO update(Long id, AgentRequestDTO dto) {
+    public AgentResponseDTO update(UUID id, AgentRequestDTO dto) {
         UserEntity authenticatedUser = tokenService.getAuthenticatedUser();
 
         AgentEntity agent = repository.findById(id).orElseThrow(() -> new AgentNotFoundException());
@@ -127,7 +128,7 @@ public class AgentService {
                 .collect(Collectors.toList());
     }
 
-    public AgentResponseDTO getById(Long id) {
+    public AgentResponseDTO getById(UUID id) {
         AgentEntity agent = repository.findById(id).orElseThrow(() -> new AgentNotFoundException());
 
         return new AgentResponseDTO(
@@ -148,7 +149,7 @@ public class AgentService {
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void delete(UUID id) {
         AgentEntity agent = repository.findById(id)
             .orElseThrow(() -> new AgentNotFoundException());
 
