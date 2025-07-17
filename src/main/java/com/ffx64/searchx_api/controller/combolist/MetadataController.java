@@ -14,7 +14,7 @@ import com.ffx64.searchx_api.dto.combolist.MetadataResponseDTO;
 import com.ffx64.searchx_api.service.combolist.MetadataService;
 
 @RestController
-@RequestMapping("/v1/api/combolist/metadata")
+@RequestMapping("/api/v1/combolist/metadata")
 public class MetadataController {
 
     @Autowired

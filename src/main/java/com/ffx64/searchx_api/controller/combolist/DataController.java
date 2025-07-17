@@ -15,7 +15,7 @@ import com.ffx64.searchx_api.dto.combolist.DataResponseDTO;
 import com.ffx64.searchx_api.service.combolist.DataService;
 
 @RestController
-@RequestMapping("/v1/api/combolist/data")
+@RequestMapping("/api/v1/combolist/data")
 public class DataController {
 
     @Autowired

@@ -44,7 +44,7 @@ ethically.
    ./mvnw spring-boot:run
 
 4. Visit:
-   http://localhost:8080/v1/api/*
+   http://localhost:8080/api/v1/*
 
 -------------------------------------------------------------------------------------------
                                        API Routes v1                               
@@ -52,37 +52,37 @@ ethically.
 
 AUTHENTICATION 
 ==============================
-POST   /v1/api/auth/login           -> Login and generate tokens  
-POST   /v1/api/auth/refresh         -> Refresh the token using Refresh-Token  
-POST   /v1/api/auth/logout          -> Invalidate the current token  
-GET    /v1/api/auth/me              -> Get the authenticated account's information  
-PUT    /v1/api/auth/me              -> Update the authenticated account's information  
+POST   /api/v1/auth/login           -> Login and generate tokens  
+POST   /api/v1/auth/refresh         -> Refresh the token using Refresh-Token  
+POST   /api/v1/auth/logout          -> Invalidate the current token  
+GET    /api/v1/auth/me              -> Get the authenticated account's information  
+PUT    /api/v1/auth/me              -> Update the authenticated account's information  
 
 USERS 
 ==============================
-GET    /v1/api/users                -> Get all users  
+GET    /api/v1/users                -> Get all users  
 
 AGENTS 
 ==============================
-POST   /v1/api/agents               -> Create a new agent  
-PUT    /v1/api/agents/{id}          -> Update an existing agent  
-GET    /v1/api/agents               -> Get all agents  
-GET    /v1/api/agents/{id}          -> Get agent by ID  
-DELETE /v1/api/agents/{id}          -> Delete agent by ID  
+POST   /api/v1/agents               -> Create a new agent  
+PUT    /api/v1/agents/{id}          -> Update an existing agent  
+GET    /api/v1/agents               -> Get all agents  
+GET    /api/v1/agents/{id}          -> Get agent by ID  
+DELETE /api/v1/agents/{id}          -> Delete agent by ID  
 
 COMBOLIST - METADATA 
 ==============================
-GET    /v1/api/combolist/metadata/{id}      -> Get metadata by ID  
-GET    /v1/api/combolist/metadata/page/{n}  -> Get paginated metadata (10 per page)  
+GET    /api/v1/combolist/metadata/{id}      -> Get metadata by ID  
+GET    /api/v1/combolist/metadata/page/{n}  -> Get paginated metadata (10 per page)  
 
 COMBOLIST - DATA 
 ==============================
-GET    /v1/api/combolist/data/{id}           -> Get entry by ID with metadata  
-GET    /v1/api/combolist/data/email/{email}  -> Search by email  
-GET    /v1/api/combolist/data/username/{u}   -> Search by username  
-GET    /v1/api/combolist/data/password/{p}   -> Search by password  
-GET    /v1/api/combolist/data/domain/{d}     -> Search by domain  
-GET    /v1/api/combolist/data/search/{input} -> Search for similar input (email or username)  
+GET    /api/v1/combolist/data/{id}           -> Get entry by ID with metadata  
+GET    /api/v1/combolist/data/email/{email}  -> Search by email  
+GET    /api/v1/combolist/data/username/{u}   -> Search by username  
+GET    /api/v1/combolist/data/password/{p}   -> Search by password  
+GET    /api/v1/combolist/data/domain/{d}     -> Search by domain  
+GET    /api/v1/combolist/data/search/{input} -> Search for similar input (email or username)  
 
 -------------------------------------------------------------------------------------------
                                     Project Structure                                 

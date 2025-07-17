@@ -21,7 +21,7 @@ import com.ffx64.searchx_api.service.main.AgentService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/api/agents")
+@RequestMapping("/api/v1/agents")
 public class AgentController {
 
     @Autowired

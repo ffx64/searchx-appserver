@@ -26,8 +26,8 @@ public class SecurityConfigurations {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.POST, "/v1/api/auth/login", "/v1/api/auth/refresh").permitAll() 
-                .requestMatchers(HttpMethod.GET, "/v1/api/auth/default").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/refresh").permitAll() 
+                .requestMatchers(HttpMethod.GET, "/api/v1/auth/default").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
