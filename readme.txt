@@ -7,6 +7,10 @@ It exposes RESTful endpoints to query, manage, and retrieve leak data stored in
 the database, enabling secure and efficient integration with external tools and
 platforms.
 
+This project is intended solely for educational purposes. Use for any illegal or
+unauthorized activities is strictly prohibited. Please use it responsibly and
+ethically.
+
 -------------------------------------------------------------------------------------------
                                         Features                                        
 -------------------------------------------------------------------------------------------
