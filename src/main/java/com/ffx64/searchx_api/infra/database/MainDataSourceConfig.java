@@ -27,7 +27,7 @@ public class MainDataSourceConfig {
     @Bean(name="mainDataSource")
     public DataSource mainDataSource() {
         return DataSourceBuilder.create()
-            .url("jdbc:postgresql://192.168.229.131:5435/searchx")
+            .url("jdbc:postgresql://localhost:5435/searchx")
             .username("docker")
             .password("docker")
             .driverClassName("org.postgresql.Driver")

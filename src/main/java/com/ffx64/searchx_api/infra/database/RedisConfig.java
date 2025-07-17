@@ -10,7 +10,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfig {
 
-    private static final String REDIS_HOST = "192.168.229.131";
+    private static final String REDIS_HOST = "localhost";
     private static final int REDIS_PORT = 6379;
 
     @Bean

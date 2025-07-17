@@ -25,7 +25,7 @@ public class CombolistDataSourceConfig {
     @Bean(name="combolistDataSource")
     public DataSource combolistDataSource() {
         return DataSourceBuilder.create()
-            .url("jdbc:postgresql://192.168.229.131:5433/searchx_combolist")
+            .url("jdbc:postgresql://localhost:5433/searchx_combolist")
             .username("docker")
             .password("docker")
             .driverClassName("org.postgresql.Driver")

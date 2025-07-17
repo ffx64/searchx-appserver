@@ -3,6 +3,7 @@ package com.ffx64.searchx_api.service.main;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,10 +27,10 @@ public class UserService {
         UserEntity user = new UserEntity();
 
         user.setUsername(dto.username());
-        user.setFullName(dto.fullName());
-        user.setEmail(dto.email());
-        user.setRole(dto.role());
-        user.setPasswordHash(dto.password());
+        user.setFullName("");
+        user.setEmail("");
+        user.setRole("");
+        user.setPasswordHash(new BCryptPasswordEncoder().encode(dto.password()));
         user.setIsActive(true);
 
         user = repository.save(user);

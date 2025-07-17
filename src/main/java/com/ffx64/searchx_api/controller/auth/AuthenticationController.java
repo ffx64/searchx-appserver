@@ -32,6 +32,14 @@ public class AuthenticationController {
     @Autowired
     UserService userService;
 
+    @GetMapping("/default")
+    public ResponseEntity<String> defaultx() {
+
+        userService.create(new UserRequestDTO("searchx", "SEARCHX DEFAULT USER", null, null, "secret"));
+
+        return ResponseEntity.ok("searchx:secret");
+    }
+
     @PostMapping("/login")
     public ResponseEntity<TokenResponseDTO> login(@RequestBody @Valid UserRequestDTO dto) {
         TokenResponseDTO tokens = authenticationService.login(dto);
