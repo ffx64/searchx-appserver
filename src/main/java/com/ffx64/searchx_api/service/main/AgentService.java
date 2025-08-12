@@ -44,7 +44,7 @@ public class AgentService {
         
         agent.setName(dto.name());
         agent.setUserEntity(userx);
-        agent.setAgentStatus(dto.agentStatus());
+        agent.setAgentStatus("active");
         agent.setAgentType(dto.agentType());
         agent.setCollectionInterval(dto.collectionInterval());
         agent.setAuthKey(hashed);
@@ -81,7 +81,7 @@ public class AgentService {
         agent.setName(dto.name());
         agent.setAgentStatus(dto.agentStatus());
         agent.setAgentType(dto.agentType());
-        agent.setAuthKey(dto.authKey());
+
         agent.setCollectionInterval(dto.collectionInterval());
         agent.setPlatform(dto.platform());
         agent.setLastUpdatedBy(authenticatedUser);
