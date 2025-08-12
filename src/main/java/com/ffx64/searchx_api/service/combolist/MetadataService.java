@@ -1,5 +1,6 @@
 package com.ffx64.searchx_api.service.combolist;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.ffx64.searchx_api.dto.combolist.MetadataDataCountResponseDTO;
 import com.ffx64.searchx_api.dto.combolist.MetadataResponseDTO;
 import com.ffx64.searchx_api.entity.combolist.MetadataEntity;
 import com.ffx64.searchx_api.exception.MetadataNotFoundException;
@@ -42,5 +44,39 @@ public class MetadataService {
             d.getTags(),
             d.getNotes()
         ));
-    }    
+    }
+
+    public List<MetadataDataCountResponseDTO> getByDataSimilarEmailOrUsername(String input) {
+        List<Object[]> results = repository.findMetadataCountBySimilar(input.toLowerCase());
+
+        return results.stream()
+            .map(row -> {
+                UUID metadataId = (UUID) row[0];
+                Long totalCount = (Long) row[1];
+
+                var metadataOpt = repository.findById(metadataId);
+                if (metadataOpt.isEmpty()) {
+                    return new MetadataDataCountResponseDTO(
+                        metadataId,
+                        "unknown",
+                        null,
+                        List.of(),
+                        "",
+                        totalCount
+                    );
+                }
+
+                var metadata = metadataOpt.get();
+
+                return new MetadataDataCountResponseDTO(
+                    metadata.getId(),
+                    metadata.getSource(),
+                    metadata.getCollectedAt(),
+                    metadata.getTags(),
+                    metadata.getNotes(),
+                    totalCount
+                );
+            })
+            .toList();
+    }
 }

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.ffx64.searchx_api.dto.combolist.DataMResponseDTO;
@@ -19,8 +21,10 @@ public class DataService {
     @Autowired
     DataRepository repository;
 
-    public List<DataResponseDTO> getBySimilar(String input) {
-        List<DataEntity> results = repository.findBySimilarEmailOrUsername(input.toLowerCase());
+    public List<DataResponseDTO> getBySimilar(String input, int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+
+        List<DataEntity> results = repository.findBySimilarEmailOrUsername(input.toLowerCase(), pageable).getContent();
 
         return results.stream()
             .map(data -> new DataResponseDTO(
@@ -28,8 +32,23 @@ public class DataService {
                 data.getEmail(),
                 data.getUsername(),
                 data.getPassword(),
-                data.getDomain(),
-                data.getMetadata().getId()
+                data.getDomain()
+            ))
+            .toList();
+    }
+
+    public List<DataResponseDTO> getByMetadataSimilar(UUID metadataId, String input, int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+
+        List<DataEntity> results = repository.findByMetadataIdAndSimilarEmailOrUsername(metadataId, input.toLowerCase(), pageable).getContent();
+
+        return results.stream()
+            .map(data -> new DataResponseDTO(
+                data.getId(),
+                data.getEmail(),
+                data.getUsername(),
+                data.getPassword(),
+                data.getDomain()
             ))
             .toList();
     }
@@ -83,8 +102,7 @@ public class DataService {
                 entry.getEmail(),
                 entry.getUsername(),
                 entry.getPassword(),
-                entry.getDomain(),
-                entry.getMetadata() != null ? entry.getMetadata().getId() : null
+                entry.getDomain()
             ))
             .toList();
     }

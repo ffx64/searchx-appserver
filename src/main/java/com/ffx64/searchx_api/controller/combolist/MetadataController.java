@@ -1,5 +1,6 @@
 package com.ffx64.searchx_api.controller.combolist;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ffx64.searchx_api.dto.combolist.MetadataDataCountResponseDTO;
 import com.ffx64.searchx_api.dto.combolist.MetadataResponseDTO;
 import com.ffx64.searchx_api.service.combolist.MetadataService;
 
@@ -28,5 +30,11 @@ public class MetadataController {
     @GetMapping("/page/{page}")
     public ResponseEntity<Page<MetadataResponseDTO>> getAllPaginated(@PathVariable int page) {
         return ResponseEntity.ok(service.getAllPaginated(page));
+    }
+
+    @GetMapping("/search-data-count/{input}")
+    public ResponseEntity<List<MetadataDataCountResponseDTO>> getByData(@PathVariable String input) {
+        List<MetadataDataCountResponseDTO> response = service.getByDataSimilarEmailOrUsername(input);
+        return ResponseEntity.ok(response);
     }
 }
