@@ -44,7 +44,7 @@ public class TokenService {
     private static final String REFRESH_PREFIX = "refresh:";
     private static final String ISSUER = "searchx-api";
 
-    private static final long ACCESS_TOKEN_EXPIRATION_MINUTES = 15;
+    private static final long ACCESS_TOKEN_EXPIRATION_MINUTES = 60;
     private static final long REFRESH_TOKEN_EXPIRATION_DAYS = 7;
 
     public String generateAccessToken(UserDetails user) {
